@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PCForge — подбор комплектующих и сборка компьютера с подсчётом стоимости">
+  <title>Каталог — PCForge</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><img src="img/logo.svg" alt="PCForge — на главную" width="170" height="37"></a>
+      <nav class="main-nav" aria-label="Основное меню">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="catalog.html" aria-current="page">Каталог</a></li>
+          <li><a href="build.html">Моя сборка</a></li>
+          <li><a href="about.html">О проекте</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+        <ol><li><a href="index.html">Главная</a></li><li>Каталог</li></ol>
+      </nav>
+      <h1>Каталог комплектующих</h1>
+      <div class="catalog-layout">
+        <aside class="filters" aria-labelledby="filters-title">
+          <h2 id="filters-title" class="h3">Фильтры</h2>
+          <form id="filter-form" novalidate>
+            <div class="form-field">
+              <label for="search">Поиск по названию</label>
+              <input type="search" id="search" name="search" placeholder="Например, RTX 4070">
+            </div>
+            <fieldset>
+              <legend>Категория</legend>
+              <div class="check-list">
+                <label><input type="checkbox" name="category" value="cpu"> Процессоры</label>
+                <label><input type="checkbox" name="category" value="motherboard"> Материнские платы</label>
+                <label><input type="checkbox" name="category" value="ram"> Оперативная память</label>
+                <label><input type="checkbox" name="category" value="gpu"> Видеокарты</label>
+                <label><input type="checkbox" name="category" value="storage"> Накопители</label>
+                <label><input type="checkbox" name="category" value="psu"> Блоки питания</label>
+                <label><input type="checkbox" name="category" value="case"> Корпуса</label>
+                <label><input type="checkbox" name="category" value="cooler"> Охлаждение</label>
+              </div>
+            </fieldset>
+            <div class="form-field">
+              <label for="brand">Бренд</label>
+              <select id="brand" name="brand">
+                <option value="">Все бренды</option>
+                <option value="AMD">AMD</option>
+                <option value="Arctic">Arctic</option>
+                <option value="ASUS">ASUS</option>
+                <option value="be quiet!">be quiet!</option>
+                <option value="Corsair">Corsair</option>
+                <option value="Cougar">Cougar</option>
+                <option value="DeepCool">DeepCool</option>
+                <option value="G.Skill">G.Skill</option>
+                <option value="Gigabyte">Gigabyte</option>
+                <option value="ID-COOLING">ID-COOLING</option>
+                <option value="Intel">Intel</option>
+                <option value="Kingston">Kingston</option>
+                <option value="Montech">Montech</option>
+                <option value="MSI">MSI</option>
+                <option value="Palit">Palit</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Sapphire">Sapphire</option>
+                <option value="Seagate">Seagate</option>
+                <option value="WD">WD</option>
+                <option value="Zalman">Zalman</option>
+              </select>
+            </div>
+            <fieldset>
+              <legend>Цена, ₽</legend>
+              <div class="price-range">
+                <div class="form-field">
+                  <label for="price-min">от</label>
+                  <input type="number" id="price-min" name="priceMin" min="0" step="100" inputmode="numeric">
+                </div>
+                <div class="form-field">
+                  <label for="price-max">до</label>
+                  <input type="number" id="price-max" name="priceMax" min="0" step="100" inputmode="numeric">
+                </div>
+              </div>
+              <span class="field-error" id="price-error" aria-live="polite"></span>
+            </fieldset>
+            <button class="btn" type="submit">Применить</button>
+            <button class="btn btn-outline" type="reset">Сбросить</button>
+          </form>
+        </aside>
+        <section aria-labelledby="results-title">
+          <div class="catalog-toolbar">
+            <h2 id="results-title">Найдено: <span id="found-count">30</span></h2>
+            <div>
+              <label for="sort">Сортировка</label>
+              <select id="sort" name="sort">
+                <option value="default">по категории</option>
+                <option value="price-asc">сначала дешевле</option>
+                <option value="price-desc">сначала дороже</option>
+                <option value="name">по названию</option>
+              </select>
+            </div>
+          </div>
+          <div class="cards" id="catalog-list" aria-live="polite">
+            <article class="card" data-id="1" data-category="cpu" data-brand="AMD" data-price="19990" data-name="AMD Ryzen 5 7600">
+                        <img src="img/cpu.svg" alt="Иллюстрация процессора" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Процессор</span>
+                          <h3><a href="product.html?id=1">AMD Ryzen 5 7600</a></h3>
+                          <p class="card-specs">AM5 · 6 / 12 · 3,8–5,1 ГГц</p>
+                          <div class="card-footer">
+                            <span class="price">19 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="1">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="2" data-category="cpu" data-brand="AMD" data-price="42990" data-name="AMD Ryzen 7 7800X3D">
+                        <img src="img/cpu.svg" alt="Иллюстрация процессора" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Процессор</span>
+                          <h3><a href="product.html?id=2">AMD Ryzen 7 7800X3D</a></h3>
+                          <p class="card-specs">AM5 · 8 / 16 · 4,2–5,0 ГГц</p>
+                          <div class="card-footer">
+                            <span class="price">42 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="2">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="3" data-category="cpu" data-brand="Intel" data-price="15490" data-name="Intel Core i5-13400F">
+                        <img src="img/cpu.svg" alt="Иллюстрация процессора" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Процессор</span>
+                          <h3><a href="product.html?id=3">Intel Core i5-13400F</a></h3>
+                          <p class="card-specs">LGA1700 · 10 / 16 · 2,5–4,6 ГГц</p>
+                          <div class="card-footer">
+                            <span class="price">15 490 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="3">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="4" data-category="cpu" data-brand="Intel" data-price="39990" data-name="Intel Core i7-14700K">
+                        <img src="img/cpu.svg" alt="Иллюстрация процессора" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Процессор</span>
+                          <h3><a href="product.html?id=4">Intel Core i7-14700K</a></h3>
+                          <p class="card-specs">LGA1700 · 20 / 28 · 3,4–5,6 ГГц</p>
+                          <div class="card-footer">
+                            <span class="price">39 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="4">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="5" data-category="motherboard" data-brand="MSI" data-price="16990" data-name="MSI PRO B650M-A WIFI">
+                        <img src="img/motherboard.svg" alt="Иллюстрация материнской платы" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Материнская плата</span>
+                          <h3><a href="product.html?id=5">MSI PRO B650M-A WIFI</a></h3>
+                          <p class="card-specs">AM5 · AMD B650 · DDR5, 4 слота</p>
+                          <div class="card-footer">
+                            <span class="price">16 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="5">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="6" data-category="motherboard" data-brand="ASUS" data-price="20490" data-name="ASUS TUF GAMING B650-PLUS">
+                        <img src="img/motherboard.svg" alt="Иллюстрация материнской платы" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Материнская плата</span>
+                          <h3><a href="product.html?id=6">ASUS TUF GAMING B650-PLUS</a></h3>
+                          <p class="card-specs">AM5 · AMD B650 · DDR5, 4 слота</p>
+                          <div class="card-footer">
+                            <span class="price">20 490 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="6">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="7" data-category="motherboard" data-brand="Gigabyte" data-price="10990" data-name="Gigabyte B760M DS3H DDR4">
+                        <img src="img/motherboard.svg" alt="Иллюстрация материнской платы" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Материнская плата</span>
+                          <h3><a href="product.html?id=7">Gigabyte B760M DS3H DDR4</a></h3>
+                          <p class="card-specs">LGA1700 · Intel B760 · DDR4, 4 слота</p>
+                          <div class="card-footer">
+                            <span class="price">10 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="7">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="8" data-category="motherboard" data-brand="MSI" data-price="27990" data-name="MSI MAG Z790 TOMAHAWK WIFI">
+                        <img src="img/motherboard.svg" alt="Иллюстрация материнской платы" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Материнская плата</span>
+                          <h3><a href="product.html?id=8">MSI MAG Z790 TOMAHAWK WIFI</a></h3>
+                          <p class="card-specs">LGA1700 · Intel Z790 · DDR5, 4 слота</p>
+                          <div class="card-footer">
+                            <span class="price">27 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="8">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="9" data-category="ram" data-brand="Kingston" data-price="3990" data-name="Kingston FURY Beast 16 ГБ (2×8) DDR4-3200">
+                        <img src="img/ram.svg" alt="Иллюстрация двух модулей оперативной памяти" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Оперативная память</span>
+                          <h3><a href="product.html?id=9">Kingston FURY Beast 16 ГБ (2×8) DDR4-3200</a></h3>
+                          <p class="card-specs">DDR4 · 16 ГБ (2 × 8 ГБ) · 3200 МГц</p>
+                          <div class="card-footer">
+                            <span class="price">3 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="9">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="10" data-category="ram" data-brand="Corsair" data-price="7490" data-name="Corsair Vengeance LPX 32 ГБ (2×16) DDR4-3600">
+                        <img src="img/ram.svg" alt="Иллюстрация двух модулей оперативной памяти" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Оперативная память</span>
+                          <h3><a href="product.html?id=10">Corsair Vengeance LPX 32 ГБ (2×16) DDR4-3600</a></h3>
+                          <p class="card-specs">DDR4 · 32 ГБ (2 × 16 ГБ) · 3600 МГц</p>
+                          <div class="card-footer">
+                            <span class="price">7 490 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="10">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="11" data-category="ram" data-brand="Kingston" data-price="9490" data-name="Kingston FURY Beast 32 ГБ (2×16) DDR5-6000">
+                        <img src="img/ram.svg" alt="Иллюстрация двух модулей оперативной памяти" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Оперативная память</span>
+                          <h3><a href="product.html?id=11">Kingston FURY Beast 32 ГБ (2×16) DDR5-6000</a></h3>
+                          <p class="card-specs">DDR5 · 32 ГБ (2 × 16 ГБ) · 6000 МГц</p>
+                          <div class="card-footer">
+                            <span class="price">9 490 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="11">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="12" data-category="ram" data-brand="G.Skill" data-price="12990" data-name="G.Skill Trident Z5 RGB 32 ГБ (2×16) DDR5-6400">
+                        <img src="img/ram.svg" alt="Иллюстрация двух модулей оперативной памяти" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Оперативная память</span>
+                          <h3><a href="product.html?id=12">G.Skill Trident Z5 RGB 32 ГБ (2×16) DDR5-6400</a></h3>
+                          <p class="card-specs">DDR5 · 32 ГБ (2 × 16 ГБ) · 6400 МГц</p>
+                          <div class="card-footer">
+                            <span class="price">12 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="12">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="13" data-category="gpu" data-brand="Palit" data-price="32990" data-name="Palit GeForce RTX 4060 Dual 8 ГБ">
+                        <img src="img/gpu.svg" alt="Иллюстрация видеокарты с двумя вентиляторами" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Видеокарта</span>
+                          <h3><a href="product.html?id=13">Palit GeForce RTX 4060 Dual 8 ГБ</a></h3>
+                          <p class="card-specs">NVIDIA GeForce RTX 4060 · 8 ГБ GDDR6 · 115 Вт</p>
+                          <div class="card-footer">
+                            <span class="price">32 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="13">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="14" data-category="gpu" data-brand="Sapphire" data-price="44990" data-name="Sapphire Pulse Radeon RX 7700 XT 12 ГБ">
+                        <img src="img/gpu.svg" alt="Иллюстрация видеокарты с двумя вентиляторами" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Видеокарта</span>
+                          <h3><a href="product.html?id=14">Sapphire Pulse Radeon RX 7700 XT 12 ГБ</a></h3>
+                          <p class="card-specs">AMD Radeon RX 7700 XT · 12 ГБ GDDR6 · 245 Вт</p>
+                          <div class="card-footer">
+                            <span class="price">44 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="14">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="15" data-category="gpu" data-brand="MSI" data-price="64990" data-name="MSI GeForce RTX 4070 SUPER Ventus 2X 12 ГБ">
+                        <img src="img/gpu.svg" alt="Иллюстрация видеокарты с двумя вентиляторами" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Видеокарта</span>
+                          <h3><a href="product.html?id=15">MSI GeForce RTX 4070 SUPER Ventus 2X 12 ГБ</a></h3>
+                          <p class="card-specs">NVIDIA GeForce RTX 4070 SUPER · 12 ГБ GDDR6X · 220 Вт</p>
+                          <div class="card-footer">
+                            <span class="price">64 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="15">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="16" data-category="gpu" data-brand="Gigabyte" data-price="109990" data-name="Gigabyte GeForce RTX 4080 SUPER Windforce 16 ГБ">
+                        <img src="img/gpu.svg" alt="Иллюстрация видеокарты с двумя вентиляторами" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Видеокарта</span>
+                          <h3><a href="product.html?id=16">Gigabyte GeForce RTX 4080 SUPER Windforce 16 ГБ</a></h3>
+                          <p class="card-specs">NVIDIA GeForce RTX 4080 SUPER · 16 ГБ GDDR6X · 320 Вт</p>
+                          <div class="card-footer">
+                            <span class="price">109 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="16">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="17" data-category="storage" data-brand="Kingston" data-price="3290" data-name="Kingston NV2 500 ГБ M.2 NVMe">
+                        <img src="img/storage.svg" alt="Иллюстрация SSD-накопителя M.2" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Накопитель</span>
+                          <h3><a href="product.html?id=17">Kingston NV2 500 ГБ M.2 NVMe</a></h3>
+                          <p class="card-specs">SSD M.2 NVMe PCIe 4.0 · 500 ГБ · 3500 МБ/с</p>
+                          <div class="card-footer">
+                            <span class="price">3 290 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="17">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="18" data-category="storage" data-brand="Samsung" data-price="8990" data-name="Samsung 990 EVO 1 ТБ M.2 NVMe">
+                        <img src="img/storage.svg" alt="Иллюстрация SSD-накопителя M.2" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Накопитель</span>
+                          <h3><a href="product.html?id=18">Samsung 990 EVO 1 ТБ M.2 NVMe</a></h3>
+                          <p class="card-specs">SSD M.2 NVMe PCIe 4.0 · 1 ТБ · 5000 МБ/с</p>
+                          <div class="card-footer">
+                            <span class="price">8 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="18">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="19" data-category="storage" data-brand="WD" data-price="15990" data-name="WD Black SN850X 2 ТБ M.2 NVMe">
+                        <img src="img/storage.svg" alt="Иллюстрация SSD-накопителя M.2" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Накопитель</span>
+                          <h3><a href="product.html?id=19">WD Black SN850X 2 ТБ M.2 NVMe</a></h3>
+                          <p class="card-specs">SSD M.2 NVMe PCIe 4.0 · 2 ТБ · 7300 МБ/с</p>
+                          <div class="card-footer">
+                            <span class="price">15 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="19">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="20" data-category="storage" data-brand="Seagate" data-price="6290" data-name="Seagate BarraCuda 2 ТБ HDD">
+                        <img src="img/storage.svg" alt="Иллюстрация SSD-накопителя M.2" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Накопитель</span>
+                          <h3><a href="product.html?id=20">Seagate BarraCuda 2 ТБ HDD</a></h3>
+                          <p class="card-specs">HDD 3,5&quot; · 2 ТБ · 7200 об/мин</p>
+                          <div class="card-footer">
+                            <span class="price">6 290 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="20">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="21" data-category="psu" data-brand="DeepCool" data-price="4990" data-name="DeepCool PK550D 550 Вт">
+                        <img src="img/psu.svg" alt="Иллюстрация блока питания" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Блок питания</span>
+                          <h3><a href="product.html?id=21">DeepCool PK550D 550 Вт</a></h3>
+                          <p class="card-specs">550 Вт · 80 PLUS Bronze · нет</p>
+                          <div class="card-footer">
+                            <span class="price">4 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="21">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="22" data-category="psu" data-brand="Cougar" data-price="8990" data-name="Cougar GEX 750 Вт">
+                        <img src="img/psu.svg" alt="Иллюстрация блока питания" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Блок питания</span>
+                          <h3><a href="product.html?id=22">Cougar GEX 750 Вт</a></h3>
+                          <p class="card-specs">750 Вт · 80 PLUS Gold · полная</p>
+                          <div class="card-footer">
+                            <span class="price">8 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="22">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="23" data-category="psu" data-brand="be quiet!" data-price="13490" data-name="be quiet! Pure Power 12 M 850 Вт">
+                        <img src="img/psu.svg" alt="Иллюстрация блока питания" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Блок питания</span>
+                          <h3><a href="product.html?id=23">be quiet! Pure Power 12 M 850 Вт</a></h3>
+                          <p class="card-specs">850 Вт · 80 PLUS Gold · полная</p>
+                          <div class="card-footer">
+                            <span class="price">13 490 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="23">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="24" data-category="case" data-brand="Zalman" data-price="2990" data-name="Zalman T4 Plus">
+                        <img src="img/case.svg" alt="Иллюстрация компьютерного корпуса" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Корпус</span>
+                          <h3><a href="product.html?id=24">Zalman T4 Plus</a></h3>
+                          <p class="card-specs">Mini Tower · Micro-ATX, Mini-ITX · 300 мм</p>
+                          <div class="card-footer">
+                            <span class="price">2 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="24">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="25" data-category="case" data-brand="Zalman" data-price="3990" data-name="Zalman S4 Plus">
+                        <img src="img/case.svg" alt="Иллюстрация компьютерного корпуса" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Корпус</span>
+                          <h3><a href="product.html?id=25">Zalman S4 Plus</a></h3>
+                          <p class="card-specs">Mid Tower · ATX, Micro-ATX, Mini-ITX · 315 мм</p>
+                          <div class="card-footer">
+                            <span class="price">3 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="25">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="26" data-category="case" data-brand="DeepCool" data-price="7990" data-name="DeepCool CH560">
+                        <img src="img/case.svg" alt="Иллюстрация компьютерного корпуса" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Корпус</span>
+                          <h3><a href="product.html?id=26">DeepCool CH560</a></h3>
+                          <p class="card-specs">Mid Tower · E-ATX, ATX, Micro-ATX · 380 мм</p>
+                          <div class="card-footer">
+                            <span class="price">7 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="26">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="27" data-category="case" data-brand="Montech" data-price="9490" data-name="Montech AIR 903 MAX">
+                        <img src="img/case.svg" alt="Иллюстрация компьютерного корпуса" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Корпус</span>
+                          <h3><a href="product.html?id=27">Montech AIR 903 MAX</a></h3>
+                          <p class="card-specs">Mid Tower · E-ATX, ATX, Micro-ATX · 400 мм</p>
+                          <div class="card-footer">
+                            <span class="price">9 490 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="27">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="28" data-category="cooler" data-brand="DeepCool" data-price="1990" data-name="DeepCool AG400">
+                        <img src="img/cooler.svg" alt="Иллюстрация башенного кулера" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Охлаждение</span>
+                          <h3><a href="product.html?id=28">DeepCool AG400</a></h3>
+                          <p class="card-specs">Башенный · до 220 Вт · AM5, AM4, LGA1700</p>
+                          <div class="card-footer">
+                            <span class="price">1 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="28">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="29" data-category="cooler" data-brand="ID-COOLING" data-price="3290" data-name="ID-COOLING SE-226-XT">
+                        <img src="img/cooler.svg" alt="Иллюстрация башенного кулера" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Охлаждение</span>
+                          <h3><a href="product.html?id=29">ID-COOLING SE-226-XT</a></h3>
+                          <p class="card-specs">Башенный · до 250 Вт · AM5, AM4, LGA1700</p>
+                          <div class="card-footer">
+                            <span class="price">3 290 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="29">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+            <article class="card" data-id="30" data-category="cooler" data-brand="Arctic" data-price="8990" data-name="Arctic Liquid Freezer III 240">
+                        <img src="img/cooler.svg" alt="Иллюстрация башенного кулера" width="400" height="300" loading="lazy">
+                        <div class="card-body">
+                          <span class="card-category">Охлаждение</span>
+                          <h3><a href="product.html?id=30">Arctic Liquid Freezer III 240</a></h3>
+                          <p class="card-specs">Жидкостное (СЖО) 240 мм · до 300 Вт · AM5, AM4, LGA1700</p>
+                          <div class="card-footer">
+                            <span class="price">8 990 ₽</span>
+                            <button class="btn btn-small" type="button" data-add-to-build="30">В сборку</button>
+                          </div>
+                        </div>
+                      </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 PCForge — учебный проект, БГТУ «ВОЕНМЕХ»</p>
+      <address>Санкт-Петербург, ул. 1-я Красноармейская, 1 · <a href="tel:+78125550123">+7 (812) 555-01-23</a></address>
+    </div>
+  </footer>
+</body>
+</html>

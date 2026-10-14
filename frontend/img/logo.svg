@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" role="img" aria-label="PCForge">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs>
+  <rect x="4" y="4" width="40" height="40" rx="9" fill="none" stroke="url(#g)" stroke-width="3"/>
+  <rect x="14" y="14" width="20" height="20" rx="3" fill="url(#g)"/>
+  <g stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round">
+    <path d="M18 4v-0M24 1v6M30 1v6M18 1v6M18 41v6M24 41v6M30 41v6M1 18h6M1 24h6M1 30h6M41 18h6M41 24h6M41 30h6"/>
+  </g>
+  <path d="M21 19h7l-4 5h4l-7 6 2-5h-3z" fill="#0d1117"/>
+  <text x="56" y="33" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#e6edf3">PC<tspan fill="#38bdf8">Forge</tspan></text>
+</svg>

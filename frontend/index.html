@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PCForge — подбор комплектующих и сборка компьютера с подсчётом стоимости">
+  <title>Главная — PCForge</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><img src="img/logo.svg" alt="PCForge — на главную" width="170" height="37"></a>
+      <nav class="main-nav" aria-label="Основное меню">
+        <ul>
+          <li><a href="index.html" aria-current="page">Главная</a></li>
+          <li><a href="catalog.html">Каталог</a></li>
+          <li><a href="build.html">Моя сборка</a></li>
+          <li><a href="about.html">О проекте</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <h1 id="hero-title">Соберите компьютер мечты без ошибок совместимости</h1>
+          <p class="lead">PCForge помогает подобрать процессор, материнскую плату, память, видеокарту и остальные комплектующие, проверяет их совместимость и сразу считает итоговую стоимость сборки.</p>
+          <div class="hero-actions">
+            <a class="btn" href="catalog.html">Перейти в каталог</a>
+            <a class="btn btn-outline" href="build.html">Открыть мою сборку</a>
+          </div>
+        </div>
+        <img src="img/hero.svg" alt="Схема собранного компьютера: материнская плата, видеокарта и накопитель в корпусе" width="560" height="400">
+      </section>
+
+      <section aria-labelledby="how-title">
+        <h2 id="how-title">Как это работает</h2>
+        <ol class="steps">
+          <li><h3>Выберите комплектующие</h3><p>Фильтруйте каталог по категории, бренду и цене.</p></li>
+          <li><h3>Добавьте их в сборку</h3><p>В сборке по одному слоту на каждый тип комплектующих.</p></li>
+          <li><h3>Проверьте совместимость</h3><p>Сокет, тип памяти, форм-фактор, мощность блока питания.</p></li>
+          <li><h3>Сохраните конфигурацию</h3><p>Итоговая стоимость в рублях, долларах и евро.</p></li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="popular-title">
+        <h2 id="popular-title">Популярные комплектующие</h2>
+        <div class="cards">
+        <article class="card" data-id="1" data-category="cpu" data-brand="AMD" data-price="19990" data-name="AMD Ryzen 5 7600">
+                    <img src="img/cpu.svg" alt="Иллюстрация процессора" width="400" height="300" loading="lazy">
+                    <div class="card-body">
+                      <span class="card-category">Процессор</span>
+                      <h3><a href="product.html?id=1">AMD Ryzen 5 7600</a></h3>
+                      <p class="card-specs">AM5 · 6 / 12 · 3,8–5,1 ГГц</p>
+                      <div class="card-footer">
+                        <span class="price">19 990 ₽</span>
+                        <button class="btn btn-small" type="button" data-add-to-build="1">В сборку</button>
+                      </div>
+                    </div>
+                  </article>
+        <article class="card" data-id="15" data-category="gpu" data-brand="MSI" data-price="64990" data-name="MSI GeForce RTX 4070 SUPER Ventus 2X 12 ГБ">
+                    <img src="img/gpu.svg" alt="Иллюстрация видеокарты с двумя вентиляторами" width="400" height="300" loading="lazy">
+                    <div class="card-body">
+                      <span class="card-category">Видеокарта</span>
+                      <h3><a href="product.html?id=15">MSI GeForce RTX 4070 SUPER Ventus 2X 12 ГБ</a></h3>
+                      <p class="card-specs">NVIDIA GeForce RTX 4070 SUPER · 12 ГБ GDDR6X · 220 Вт</p>
+                      <div class="card-footer">
+                        <span class="price">64 990 ₽</span>
+                        <button class="btn btn-small" type="button" data-add-to-build="15">В сборку</button>
+                      </div>
+                    </div>
+                  </article>
+        <article class="card" data-id="10" data-category="ram" data-brand="Corsair" data-price="7490" data-name="Corsair Vengeance LPX 32 ГБ (2×16) DDR4-3600">
+                    <img src="img/ram.svg" alt="Иллюстрация двух модулей оперативной памяти" width="400" height="300" loading="lazy">
+                    <div class="card-body">
+                      <span class="card-category">Оперативная память</span>
+                      <h3><a href="product.html?id=10">Corsair Vengeance LPX 32 ГБ (2×16) DDR4-3600</a></h3>
+                      <p class="card-specs">DDR4 · 32 ГБ (2 × 16 ГБ) · 3600 МГц</p>
+                      <div class="card-footer">
+                        <span class="price">7 490 ₽</span>
+                        <button class="btn btn-small" type="button" data-add-to-build="10">В сборку</button>
+                      </div>
+                    </div>
+                  </article>
+        <article class="card" data-id="18" data-category="storage" data-brand="Samsung" data-price="8990" data-name="Samsung 990 EVO 1 ТБ M.2 NVMe">
+                    <img src="img/storage.svg" alt="Иллюстрация SSD-накопителя M.2" width="400" height="300" loading="lazy">
+                    <div class="card-body">
+                      <span class="card-category">Накопитель</span>
+                      <h3><a href="product.html?id=18">Samsung 990 EVO 1 ТБ M.2 NVMe</a></h3>
+                      <p class="card-specs">SSD M.2 NVMe PCIe 4.0 · 1 ТБ · 5000 МБ/с</p>
+                      <div class="card-footer">
+                        <span class="price">8 990 ₽</span>
+                        <button class="btn btn-small" type="button" data-add-to-build="18">В сборку</button>
+                      </div>
+                    </div>
+                  </article>
+        <article class="card" data-id="22" data-category="psu" data-brand="Cougar" data-price="8990" data-name="Cougar GEX 750 Вт">
+                    <img src="img/psu.svg" alt="Иллюстрация блока питания" width="400" height="300" loading="lazy">
+                    <div class="card-body">
+                      <span class="card-category">Блок питания</span>
+                      <h3><a href="product.html?id=22">Cougar GEX 750 Вт</a></h3>
+                      <p class="card-specs">750 Вт · 80 PLUS Gold · полная</p>
+                      <div class="card-footer">
+                        <span class="price">8 990 ₽</span>
+                        <button class="btn btn-small" type="button" data-add-to-build="22">В сборку</button>
+                      </div>
+                    </div>
+                  </article>
+        <article class="card" data-id="25" data-category="case" data-brand="Zalman" data-price="3990" data-name="Zalman S4 Plus">
+                    <img src="img/case.svg" alt="Иллюстрация компьютерного корпуса" width="400" height="300" loading="lazy">
+                    <div class="card-body">
+                      <span class="card-category">Корпус</span>
+                      <h3><a href="product.html?id=25">Zalman S4 Plus</a></h3>
+                      <p class="card-specs">Mid Tower · ATX, Micro-ATX, Mini-ITX · 315 мм</p>
+                      <div class="card-footer">
+                        <span class="price">3 990 ₽</span>
+                        <button class="btn btn-small" type="button" data-add-to-build="25">В сборку</button>
+                      </div>
+                    </div>
+                  </article>
+        </div>
+        <p><a href="catalog.html">Весь каталог — 30 позиций →</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 PCForge — учебный проект, БГТУ «ВОЕНМЕХ»</p>
+      <address>Санкт-Петербург, ул. 1-я Красноармейская, 1 · <a href="tel:+78125550123">+7 (812) 555-01-23</a></address>
+    </div>
+  </footer>
+</body>
+</html>

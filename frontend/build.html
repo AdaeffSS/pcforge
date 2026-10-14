@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PCForge — подбор комплектующих и сборка компьютера с подсчётом стоимости">
+  <title>Моя сборка — PCForge</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><img src="img/logo.svg" alt="PCForge — на главную" width="170" height="37"></a>
+      <nav class="main-nav" aria-label="Основное меню">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="catalog.html">Каталог</a></li>
+          <li><a href="build.html" aria-current="page">Моя сборка</a></li>
+          <li><a href="about.html">О проекте</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+        <ol><li><a href="index.html">Главная</a></li><li>Моя сборка</li></ol>
+      </nav>
+      <h1>Моя сборка</h1>
+      <div class="build-layout">
+        <section aria-labelledby="parts-title">
+          <h2 id="parts-title">Комплектующие</h2>
+          <table class="build-table">
+            <thead>
+              <tr><th scope="col">Слот</th><th scope="col">Комплектующее</th><th scope="col">Цена</th><th scope="col"><span class="visually-hidden">Действие</span></th></tr>
+            </thead>
+            <tbody id="build-rows">
+              <tr>
+                <th scope="row">Процессор</th>
+                <td><a href="product.html?id=1">AMD Ryzen 5 7600</a></td>
+                <td>19 990 ₽</td>
+                <td><button class="btn btn-small btn-danger" type="button">Убрать</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Материнская плата</th>
+                <td><a href="product.html?id=5">MSI PRO B650M-A WIFI</a></td>
+                <td>16 990 ₽</td>
+                <td><button class="btn btn-small btn-danger" type="button">Убрать</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Оперативная память</th>
+                <td><a href="product.html?id=11">Kingston FURY Beast 32 ГБ (2×16) DDR5-6000</a></td>
+                <td>9 490 ₽</td>
+                <td><button class="btn btn-small btn-danger" type="button">Убрать</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Видеокарта</th>
+                <td><a href="product.html?id=15">MSI GeForce RTX 4070 SUPER Ventus 2X 12 ГБ</a></td>
+                <td>64 990 ₽</td>
+                <td><button class="btn btn-small btn-danger" type="button">Убрать</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Накопитель</th>
+                <td><a href="product.html?id=18">Samsung 990 EVO 1 ТБ M.2 NVMe</a></td>
+                <td>8 990 ₽</td>
+                <td><button class="btn btn-small btn-danger" type="button">Убрать</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Блок питания</th>
+                <td><a href="product.html?id=22">Cougar GEX 750 Вт</a></td>
+                <td>8 990 ₽</td>
+                <td><button class="btn btn-small btn-danger" type="button">Убрать</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Корпус</th>
+                <td><a href="product.html?id=25">Zalman S4 Plus</a></td>
+                <td>3 990 ₽</td>
+                <td><button class="btn btn-small btn-danger" type="button">Убрать</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Охлаждение</th>
+                <td><a href="product.html?id=28">DeepCool AG400</a></td>
+                <td>1 990 ₽</td>
+                <td><button class="btn btn-small btn-danger" type="button">Убрать</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <p><a href="catalog.html">+ Добавить комплектующие из каталога</a></p>
+        </section>
+        <aside class="build-summary" aria-labelledby="summary-title">
+          <h2 id="summary-title">Итог</h2>
+          <dl>
+            <dt>Позиций</dt><dd id="build-count">8 из 8</dd>
+            <dt>Потребление</dt><dd id="build-power">≈ 385 Вт</dd>
+            <dt>Итого</dt><dd class="build-total" id="build-total">135 420 ₽</dd>
+            <dt>В валюте</dt><dd id="build-currency">—</dd>
+          </dl>
+          <h3>Проверка совместимости</h3>
+          <ul class="checks" id="build-checks">
+            <li>Сокет процессора и платы совпадает: AM5</li>
+            <li>Тип памяти совпадает: DDR5</li>
+            <li>Плата Micro-ATX помещается в корпус ATX</li>
+            <li>Блок питания 750 Вт при расчётном потреблении ≈ 385 Вт</li>
+          </ul>
+          <button class="btn btn-outline" type="button" id="clear-build">Очистить сборку</button>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 PCForge — учебный проект, БГТУ «ВОЕНМЕХ»</p>
+      <address>Санкт-Петербург, ул. 1-я Красноармейская, 1 · <a href="tel:+78125550123">+7 (812) 555-01-23</a></address>
+    </div>
+  </footer>
+</body>
+</html>
