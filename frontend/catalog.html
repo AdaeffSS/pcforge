@@ -7,6 +7,9 @@
   <title>Каталог — PCForge</title>
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/build-store.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/catalog.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -17,7 +20,7 @@
         <ul>
           <li><a href="index.html">Главная</a></li>
           <li><a href="catalog.html" aria-current="page">Каталог</a></li>
-          <li><a href="build.html">Моя сборка</a></li>
+          <li><a href="build.html">Моя сборка <span class="build-counter" data-build-counter>0</span></a></li>
           <li><a href="about.html">О проекте</a></li>
           <li><a href="contacts.html">Контакты</a></li>
         </ul>
@@ -110,7 +113,7 @@
             </div>
           </div>
           <div class="cards" id="catalog-list" aria-live="polite">
-            <article class="card" data-id="1" data-category="cpu" data-brand="AMD" data-price="19990" data-name="AMD Ryzen 5 7600">
+            <article class="card" data-id="1" data-category="cpu" data-brand="AMD" data-price="19990" data-name="AMD Ryzen 5 7600" data-socket="AM5" data-power="65">
                         <img src="img/cpu.svg" alt="Иллюстрация процессора" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Процессор</span>
@@ -122,7 +125,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="2" data-category="cpu" data-brand="AMD" data-price="42990" data-name="AMD Ryzen 7 7800X3D">
+            <article class="card" data-id="2" data-category="cpu" data-brand="AMD" data-price="42990" data-name="AMD Ryzen 7 7800X3D" data-socket="AM5" data-power="120">
                         <img src="img/cpu.svg" alt="Иллюстрация процессора" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Процессор</span>
@@ -134,7 +137,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="3" data-category="cpu" data-brand="Intel" data-price="15490" data-name="Intel Core i5-13400F">
+            <article class="card" data-id="3" data-category="cpu" data-brand="Intel" data-price="15490" data-name="Intel Core i5-13400F" data-socket="LGA1700" data-power="65">
                         <img src="img/cpu.svg" alt="Иллюстрация процессора" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Процессор</span>
@@ -146,7 +149,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="4" data-category="cpu" data-brand="Intel" data-price="39990" data-name="Intel Core i7-14700K">
+            <article class="card" data-id="4" data-category="cpu" data-brand="Intel" data-price="39990" data-name="Intel Core i7-14700K" data-socket="LGA1700" data-power="125">
                         <img src="img/cpu.svg" alt="Иллюстрация процессора" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Процессор</span>
@@ -158,7 +161,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="5" data-category="motherboard" data-brand="MSI" data-price="16990" data-name="MSI PRO B650M-A WIFI">
+            <article class="card" data-id="5" data-category="motherboard" data-brand="MSI" data-price="16990" data-name="MSI PRO B650M-A WIFI" data-socket="AM5" data-ram-type="DDR5" data-form-factor="mATX">
                         <img src="img/motherboard.svg" alt="Иллюстрация материнской платы" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Материнская плата</span>
@@ -170,7 +173,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="6" data-category="motherboard" data-brand="ASUS" data-price="20490" data-name="ASUS TUF GAMING B650-PLUS">
+            <article class="card" data-id="6" data-category="motherboard" data-brand="ASUS" data-price="20490" data-name="ASUS TUF GAMING B650-PLUS" data-socket="AM5" data-ram-type="DDR5" data-form-factor="ATX">
                         <img src="img/motherboard.svg" alt="Иллюстрация материнской платы" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Материнская плата</span>
@@ -182,7 +185,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="7" data-category="motherboard" data-brand="Gigabyte" data-price="10990" data-name="Gigabyte B760M DS3H DDR4">
+            <article class="card" data-id="7" data-category="motherboard" data-brand="Gigabyte" data-price="10990" data-name="Gigabyte B760M DS3H DDR4" data-socket="LGA1700" data-ram-type="DDR4" data-form-factor="mATX">
                         <img src="img/motherboard.svg" alt="Иллюстрация материнской платы" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Материнская плата</span>
@@ -194,7 +197,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="8" data-category="motherboard" data-brand="MSI" data-price="27990" data-name="MSI MAG Z790 TOMAHAWK WIFI">
+            <article class="card" data-id="8" data-category="motherboard" data-brand="MSI" data-price="27990" data-name="MSI MAG Z790 TOMAHAWK WIFI" data-socket="LGA1700" data-ram-type="DDR5" data-form-factor="ATX">
                         <img src="img/motherboard.svg" alt="Иллюстрация материнской платы" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Материнская плата</span>
@@ -206,7 +209,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="9" data-category="ram" data-brand="Kingston" data-price="3990" data-name="Kingston FURY Beast 16 ГБ (2×8) DDR4-3200">
+            <article class="card" data-id="9" data-category="ram" data-brand="Kingston" data-price="3990" data-name="Kingston FURY Beast 16 ГБ (2×8) DDR4-3200" data-ram-type="DDR4">
                         <img src="img/ram.svg" alt="Иллюстрация двух модулей оперативной памяти" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Оперативная память</span>
@@ -218,7 +221,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="10" data-category="ram" data-brand="Corsair" data-price="7490" data-name="Corsair Vengeance LPX 32 ГБ (2×16) DDR4-3600">
+            <article class="card" data-id="10" data-category="ram" data-brand="Corsair" data-price="7490" data-name="Corsair Vengeance LPX 32 ГБ (2×16) DDR4-3600" data-ram-type="DDR4">
                         <img src="img/ram.svg" alt="Иллюстрация двух модулей оперативной памяти" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Оперативная память</span>
@@ -230,7 +233,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="11" data-category="ram" data-brand="Kingston" data-price="9490" data-name="Kingston FURY Beast 32 ГБ (2×16) DDR5-6000">
+            <article class="card" data-id="11" data-category="ram" data-brand="Kingston" data-price="9490" data-name="Kingston FURY Beast 32 ГБ (2×16) DDR5-6000" data-ram-type="DDR5">
                         <img src="img/ram.svg" alt="Иллюстрация двух модулей оперативной памяти" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Оперативная память</span>
@@ -242,7 +245,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="12" data-category="ram" data-brand="G.Skill" data-price="12990" data-name="G.Skill Trident Z5 RGB 32 ГБ (2×16) DDR5-6400">
+            <article class="card" data-id="12" data-category="ram" data-brand="G.Skill" data-price="12990" data-name="G.Skill Trident Z5 RGB 32 ГБ (2×16) DDR5-6400" data-ram-type="DDR5">
                         <img src="img/ram.svg" alt="Иллюстрация двух модулей оперативной памяти" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Оперативная память</span>
@@ -254,7 +257,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="13" data-category="gpu" data-brand="Palit" data-price="32990" data-name="Palit GeForce RTX 4060 Dual 8 ГБ">
+            <article class="card" data-id="13" data-category="gpu" data-brand="Palit" data-price="32990" data-name="Palit GeForce RTX 4060 Dual 8 ГБ" data-power="115" data-gpu-length="250">
                         <img src="img/gpu.svg" alt="Иллюстрация видеокарты с двумя вентиляторами" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Видеокарта</span>
@@ -266,7 +269,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="14" data-category="gpu" data-brand="Sapphire" data-price="44990" data-name="Sapphire Pulse Radeon RX 7700 XT 12 ГБ">
+            <article class="card" data-id="14" data-category="gpu" data-brand="Sapphire" data-price="44990" data-name="Sapphire Pulse Radeon RX 7700 XT 12 ГБ" data-power="245" data-gpu-length="280">
                         <img src="img/gpu.svg" alt="Иллюстрация видеокарты с двумя вентиляторами" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Видеокарта</span>
@@ -278,7 +281,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="15" data-category="gpu" data-brand="MSI" data-price="64990" data-name="MSI GeForce RTX 4070 SUPER Ventus 2X 12 ГБ">
+            <article class="card" data-id="15" data-category="gpu" data-brand="MSI" data-price="64990" data-name="MSI GeForce RTX 4070 SUPER Ventus 2X 12 ГБ" data-power="220" data-gpu-length="242">
                         <img src="img/gpu.svg" alt="Иллюстрация видеокарты с двумя вентиляторами" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Видеокарта</span>
@@ -290,7 +293,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="16" data-category="gpu" data-brand="Gigabyte" data-price="109990" data-name="Gigabyte GeForce RTX 4080 SUPER Windforce 16 ГБ">
+            <article class="card" data-id="16" data-category="gpu" data-brand="Gigabyte" data-price="109990" data-name="Gigabyte GeForce RTX 4080 SUPER Windforce 16 ГБ" data-power="320" data-gpu-length="342">
                         <img src="img/gpu.svg" alt="Иллюстрация видеокарты с двумя вентиляторами" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Видеокарта</span>
@@ -350,7 +353,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="21" data-category="psu" data-brand="DeepCool" data-price="4990" data-name="DeepCool PK550D 550 Вт">
+            <article class="card" data-id="21" data-category="psu" data-brand="DeepCool" data-price="4990" data-name="DeepCool PK550D 550 Вт" data-power="550">
                         <img src="img/psu.svg" alt="Иллюстрация блока питания" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Блок питания</span>
@@ -362,7 +365,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="22" data-category="psu" data-brand="Cougar" data-price="8990" data-name="Cougar GEX 750 Вт">
+            <article class="card" data-id="22" data-category="psu" data-brand="Cougar" data-price="8990" data-name="Cougar GEX 750 Вт" data-power="750">
                         <img src="img/psu.svg" alt="Иллюстрация блока питания" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Блок питания</span>
@@ -374,7 +377,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="23" data-category="psu" data-brand="be quiet!" data-price="13490" data-name="be quiet! Pure Power 12 M 850 Вт">
+            <article class="card" data-id="23" data-category="psu" data-brand="be quiet!" data-price="13490" data-name="be quiet! Pure Power 12 M 850 Вт" data-power="850">
                         <img src="img/psu.svg" alt="Иллюстрация блока питания" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Блок питания</span>
@@ -386,7 +389,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="24" data-category="case" data-brand="Zalman" data-price="2990" data-name="Zalman T4 Plus">
+            <article class="card" data-id="24" data-category="case" data-brand="Zalman" data-price="2990" data-name="Zalman T4 Plus" data-form-factor="mATX" data-gpu-length="300">
                         <img src="img/case.svg" alt="Иллюстрация компьютерного корпуса" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Корпус</span>
@@ -398,7 +401,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="25" data-category="case" data-brand="Zalman" data-price="3990" data-name="Zalman S4 Plus">
+            <article class="card" data-id="25" data-category="case" data-brand="Zalman" data-price="3990" data-name="Zalman S4 Plus" data-form-factor="ATX" data-gpu-length="315">
                         <img src="img/case.svg" alt="Иллюстрация компьютерного корпуса" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Корпус</span>
@@ -410,7 +413,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="26" data-category="case" data-brand="DeepCool" data-price="7990" data-name="DeepCool CH560">
+            <article class="card" data-id="26" data-category="case" data-brand="DeepCool" data-price="7990" data-name="DeepCool CH560" data-form-factor="ATX" data-gpu-length="380">
                         <img src="img/case.svg" alt="Иллюстрация компьютерного корпуса" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Корпус</span>
@@ -422,7 +425,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="27" data-category="case" data-brand="Montech" data-price="9490" data-name="Montech AIR 903 MAX">
+            <article class="card" data-id="27" data-category="case" data-brand="Montech" data-price="9490" data-name="Montech AIR 903 MAX" data-form-factor="ATX" data-gpu-length="400">
                         <img src="img/case.svg" alt="Иллюстрация компьютерного корпуса" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Корпус</span>
@@ -434,7 +437,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="28" data-category="cooler" data-brand="DeepCool" data-price="1990" data-name="DeepCool AG400">
+            <article class="card" data-id="28" data-category="cooler" data-brand="DeepCool" data-price="1990" data-name="DeepCool AG400" data-power="220">
                         <img src="img/cooler.svg" alt="Иллюстрация башенного кулера" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Охлаждение</span>
@@ -446,7 +449,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="29" data-category="cooler" data-brand="ID-COOLING" data-price="3290" data-name="ID-COOLING SE-226-XT">
+            <article class="card" data-id="29" data-category="cooler" data-brand="ID-COOLING" data-price="3290" data-name="ID-COOLING SE-226-XT" data-power="250">
                         <img src="img/cooler.svg" alt="Иллюстрация башенного кулера" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Охлаждение</span>
@@ -458,7 +461,7 @@
                           </div>
                         </div>
                       </article>
-            <article class="card" data-id="30" data-category="cooler" data-brand="Arctic" data-price="8990" data-name="Arctic Liquid Freezer III 240">
+            <article class="card" data-id="30" data-category="cooler" data-brand="Arctic" data-price="8990" data-name="Arctic Liquid Freezer III 240" data-power="300">
                         <img src="img/cooler.svg" alt="Иллюстрация башенного кулера" width="400" height="300" loading="lazy">
                         <div class="card-body">
                           <span class="card-category">Охлаждение</span>

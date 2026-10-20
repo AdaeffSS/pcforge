@@ -7,6 +7,8 @@
   <title>Главная — PCForge</title>
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/build-store.js" defer></script>
+  <script src="js/main.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -17,7 +19,7 @@
         <ul>
           <li><a href="index.html" aria-current="page">Главная</a></li>
           <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="build.html">Моя сборка</a></li>
+          <li><a href="build.html">Моя сборка <span class="build-counter" data-build-counter>0</span></a></li>
           <li><a href="about.html">О проекте</a></li>
           <li><a href="contacts.html">Контакты</a></li>
         </ul>
@@ -52,7 +54,7 @@
       <section aria-labelledby="popular-title">
         <h2 id="popular-title">Популярные комплектующие</h2>
         <div class="cards">
-        <article class="card" data-id="1" data-category="cpu" data-brand="AMD" data-price="19990" data-name="AMD Ryzen 5 7600">
+        <article class="card" data-id="1" data-category="cpu" data-brand="AMD" data-price="19990" data-name="AMD Ryzen 5 7600" data-socket="AM5" data-power="65">
                     <img src="img/cpu.svg" alt="Иллюстрация процессора" width="400" height="300" loading="lazy">
                     <div class="card-body">
                       <span class="card-category">Процессор</span>
@@ -64,7 +66,7 @@
                       </div>
                     </div>
                   </article>
-        <article class="card" data-id="15" data-category="gpu" data-brand="MSI" data-price="64990" data-name="MSI GeForce RTX 4070 SUPER Ventus 2X 12 ГБ">
+        <article class="card" data-id="15" data-category="gpu" data-brand="MSI" data-price="64990" data-name="MSI GeForce RTX 4070 SUPER Ventus 2X 12 ГБ" data-power="220" data-gpu-length="242">
                     <img src="img/gpu.svg" alt="Иллюстрация видеокарты с двумя вентиляторами" width="400" height="300" loading="lazy">
                     <div class="card-body">
                       <span class="card-category">Видеокарта</span>
@@ -76,7 +78,7 @@
                       </div>
                     </div>
                   </article>
-        <article class="card" data-id="10" data-category="ram" data-brand="Corsair" data-price="7490" data-name="Corsair Vengeance LPX 32 ГБ (2×16) DDR4-3600">
+        <article class="card" data-id="10" data-category="ram" data-brand="Corsair" data-price="7490" data-name="Corsair Vengeance LPX 32 ГБ (2×16) DDR4-3600" data-ram-type="DDR4">
                     <img src="img/ram.svg" alt="Иллюстрация двух модулей оперативной памяти" width="400" height="300" loading="lazy">
                     <div class="card-body">
                       <span class="card-category">Оперативная память</span>
@@ -100,7 +102,7 @@
                       </div>
                     </div>
                   </article>
-        <article class="card" data-id="22" data-category="psu" data-brand="Cougar" data-price="8990" data-name="Cougar GEX 750 Вт">
+        <article class="card" data-id="22" data-category="psu" data-brand="Cougar" data-price="8990" data-name="Cougar GEX 750 Вт" data-power="750">
                     <img src="img/psu.svg" alt="Иллюстрация блока питания" width="400" height="300" loading="lazy">
                     <div class="card-body">
                       <span class="card-category">Блок питания</span>
@@ -112,7 +114,7 @@
                       </div>
                     </div>
                   </article>
-        <article class="card" data-id="25" data-category="case" data-brand="Zalman" data-price="3990" data-name="Zalman S4 Plus">
+        <article class="card" data-id="25" data-category="case" data-brand="Zalman" data-price="3990" data-name="Zalman S4 Plus" data-form-factor="ATX" data-gpu-length="315">
                     <img src="img/case.svg" alt="Иллюстрация компьютерного корпуса" width="400" height="300" loading="lazy">
                     <div class="card-body">
                       <span class="card-category">Корпус</span>
