@@ -1,4 +1,4 @@
-// Каталог: фильтрация и сортировка карточек без перезагрузки страницы.
+// Каталог: данные приходят с сервера, фильтры и сортировка — без перезагрузки страницы.
 
 const filterForm = document.getElementById("filter-form");
 const sortSelect = document.getElementById("sort");
@@ -6,19 +6,10 @@ const list = document.getElementById("catalog-list");
 const foundCount = document.getElementById("found-count");
 const priceError = document.getElementById("price-error");
 
-const cards = Array.from(list.querySelectorAll(".card"));
-cards.forEach((card, index) => {
-  card.dataset.order = index; // исходный порядок — «по категории»
-});
-
-const emptyMessage = document.createElement("p");
-emptyMessage.className = "catalog-empty";
-emptyMessage.textContent = "Ничего не найдено. Измените условия фильтра.";
-
 function readFilters() {
   const data = new FormData(filterForm);
   return {
-    search: data.get("search").trim().toLowerCase(),
+    search: data.get("search").trim(),
     categories: data.getAll("category"),
     brand: data.get("brand"),
     priceMin: data.get("priceMin") === "" ? null : Number(data.get("priceMin")),
@@ -40,56 +31,73 @@ function validatePrice(filters) {
   return message === "";
 }
 
-function matchesFilters(card, filters) {
-  const price = Number(card.dataset.price);
-  return (
-    (filters.search === "" || card.dataset.name.toLowerCase().includes(filters.search)) &&
-    (filters.categories.length === 0 || filters.categories.includes(card.dataset.category)) &&
-    (filters.brand === "" || card.dataset.brand === filters.brand) &&
-    (filters.priceMin === null || price >= filters.priceMin) &&
-    (filters.priceMax === null || price <= filters.priceMax)
-  );
+// Параметры фильтра -> строка запроса /api/components?category=gpu&min_price=...
+function buildQuery(filters) {
+  const params = new URLSearchParams();
+  filters.categories.forEach((category) => params.append("category", category));
+  if (filters.brand) params.set("brand", filters.brand);
+  if (filters.search) params.set("q", filters.search);
+  if (filters.priceMin !== null) params.set("min_price", filters.priceMin);
+  if (filters.priceMax !== null) params.set("max_price", filters.priceMax);
+  params.set("sort", sortSelect.value);
+  return params.toString();
 }
 
-const sorters = {
-  default: (a, b) => a.dataset.order - b.dataset.order,
-  "price-asc": (a, b) => a.dataset.price - b.dataset.price,
-  "price-desc": (a, b) => b.dataset.price - a.dataset.price,
-  name: (a, b) => a.dataset.name.localeCompare(b.dataset.name, "ru"),
-};
+let lastRequest = 0;
 
-function applyFilters() {
+async function loadCatalog() {
   const filters = readFilters();
   if (!validatePrice(filters)) {
     return;
   }
-  const visible = cards.filter((card) => matchesFilters(card, filters)).sort(sorters[sortSelect.value]);
-  list.replaceChildren(...(visible.length > 0 ? visible : [emptyMessage]));
-  foundCount.textContent = visible.length;
+  const requestNumber = ++lastRequest;
+  list.setAttribute("aria-busy", "true");
+  foundCount.textContent = "…";
+  try {
+    const components = await apiRequest(`/api/components?${buildQuery(filters)}`);
+    if (requestNumber !== lastRequest) return; // пришёл ответ на устаревший запрос
+    foundCount.textContent = components.length;
+    if (components.length === 0) {
+      list.innerHTML = '<p class="catalog-empty">Ничего не найдено. Измените условия фильтра.</p>';
+    } else {
+      list.replaceChildren(...components.map(createCard));
+    }
+  } catch (error) {
+    foundCount.textContent = "0";
+    list.innerHTML = "";
+    const message = document.createElement("p");
+    message.className = "catalog-empty status-error";
+    message.textContent = `Не удалось загрузить каталог: ${error.message}`;
+    list.append(message);
+  } finally {
+    list.removeAttribute("aria-busy");
+  }
 }
+
+let searchTimer = null;
 
 filterForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  applyFilters();
+  loadCatalog();
 });
-// Флажки и список брендов применяются сразу, поле поиска — по мере ввода
-filterForm.addEventListener("change", applyFilters);
+filterForm.addEventListener("change", (event) => {
+  if (event.target.name !== "search") loadCatalog();
+});
+// Поиск по мере ввода, но не чаще одного запроса за 300 мс
 filterForm.addEventListener("input", (event) => {
   if (event.target.name === "search") {
-    applyFilters();
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(loadCatalog, 300);
   }
 });
 filterForm.addEventListener("reset", () => {
-  setTimeout(applyFilters); // поля очищаются после события reset
+  setTimeout(loadCatalog); // поля очищаются после события reset
 });
-sortSelect.addEventListener("change", applyFilters);
+sortSelect.addEventListener("change", loadCatalog);
 
-// Переход из сборки вида catalog.html?category=gpu сразу отмечает нужную категорию
 const presetCategory = new URLSearchParams(location.search).get("category");
 if (presetCategory) {
-  const checkbox = filterForm.querySelector(`input[name="category"][value="${presetCategory}"]`);
-  if (checkbox) {
-    checkbox.checked = true;
-  }
+  const checkbox = filterForm.querySelector(`input[name="category"][value="${CSS.escape(presetCategory)}"]`);
+  if (checkbox) checkbox.checked = true;
 }
-applyFilters();
+loadCatalog();

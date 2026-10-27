@@ -67,13 +67,17 @@ function checkCompatibility(build) {
 
   if (cpu && motherboard) {
     checks.push(cpu.socket === motherboard.socket
-      ? { level: "ok", text: `Сокет процессора и платы совпадает: ${cpu.socket}` }
-      : { level: "error", text: `Сокет не совпадает: процессор ${cpu.socket}, плата ${motherboard.socket}` });
+      ? { level: "ok", text: `Сокет совпадает: ${cpu.socket}` }
+      : { level: "error",
+          text: `Сокет не совпадает: ${cpu.socket} и ` +
+                `${motherboard.socket}` });
   }
   if (ram && motherboard) {
     checks.push(ram.ramType === motherboard.ramType
-      ? { level: "ok", text: `Тип памяти совпадает: ${ram.ramType}` }
-      : { level: "error", text: `Плата поддерживает ${motherboard.ramType}, а выбрана память ${ram.ramType}` });
+      ? { level: "ok", text: `Тип памяти: ${ram.ramType}` }
+      : { level: "error",
+          text: `Плата поддерживает ${motherboard.ramType}, ` +
+                `а выбрана память ${ram.ramType}` });
   }
   if (motherboard && pcCase) {
     const fits = pcCase.formFactor === "ATX" || motherboard.formFactor === "mATX";
@@ -145,3 +149,45 @@ document.getElementById("clear-build").addEventListener("click", () => {
 });
 
 renderBuild();
+
+// ---------- Сохранение сборки в личном кабинете ----------
+
+const saveForm = document.getElementById("save-build-form");
+const saveResult = document.getElementById("save-build-result");
+const saveRules = { title: requiredText("Название сборки", 2) };
+
+saveForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  saveResult.hidden = true;
+  const build = loadBuild();
+  if (countBuildItems(build) === 0) {
+    saveResult.className = "form-result is-error";
+    saveResult.textContent = "Сборка пуста — добавьте комплектующие из каталога.";
+    saveResult.hidden = false;
+    return;
+  }
+  if (!validateForm(saveForm, saveRules)) {
+    return;
+  }
+  try {
+    const saved = await apiRequest("/api/builds", {
+      method: "POST",
+      body: {
+        title: saveForm.elements.title.value.trim(),
+        component_ids: Object.values(build).map((item) => item.id),
+      },
+    });
+    saveResult.className = "form-result";
+    saveResult.innerHTML = `Сборка «<span></span>» сохранена. <a href="account.html">Открыть кабинет</a>`;
+    saveResult.querySelector("span").textContent = saved.title;
+    saveForm.reset();
+  } catch (error) {
+    saveResult.className = "form-result is-error";
+    if (error.status === 401) {
+      saveResult.innerHTML = 'Чтобы сохранить сборку, <a href="account.html">войдите или зарегистрируйтесь</a>.';
+    } else {
+      saveResult.textContent = error.message;
+    }
+  }
+  saveResult.hidden = false;
+});

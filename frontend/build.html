@@ -7,7 +7,9 @@
   <title>Моя сборка — PCForge</title>
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/api.js" defer></script>
   <script src="js/build-store.js" defer></script>
+  <script src="js/validation.js" defer></script>
   <script src="js/currency.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/build.js" defer></script>
@@ -24,6 +26,7 @@
           <li><a href="build.html" aria-current="page">Моя сборка <span class="build-counter" data-build-counter>0</span></a></li>
           <li><a href="about.html">О проекте</a></li>
           <li><a href="contacts.html">Контакты</a></li>
+          <li><a href="account.html">Кабинет</a></li>
         </ul>
       </nav>
     </div>
@@ -61,6 +64,15 @@
 
           </ul>
           <button class="btn btn-outline" type="button" id="clear-build">Очистить сборку</button>
+          <form id="save-build-form" novalidate>
+            <div class="form-field">
+              <label for="build-title">Название сборки</label>
+              <input type="text" id="build-title" name="title" maxlength="60" placeholder="Например, Игровой ПК 2026">
+              <span class="field-error" aria-live="polite"></span>
+            </div>
+            <button class="btn" type="submit">Сохранить в кабинете</button>
+            <p class="form-result" id="save-build-result" hidden></p>
+          </form>
         </aside>
       </div>
     </div>

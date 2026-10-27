@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PCForge — подбор комплектующих и сборка компьютера с подсчётом стоимости">
+  <title>Личный кабинет — PCForge</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/build-store.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/account.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><img src="img/logo.svg" alt="PCForge — на главную" width="170" height="37"></a>
+      <nav class="main-nav" aria-label="Основное меню">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="catalog.html">Каталог</a></li>
+          <li><a href="build.html">Моя сборка <span class="build-counter" data-build-counter>0</span></a></li>
+          <li><a href="about.html">О проекте</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+          <li><a href="account.html" aria-current="page">Кабинет</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+        <ol><li><a href="index.html">Главная</a></li><li>Личный кабинет</li></ol>
+      </nav>
+      <h1>Личный кабинет</h1>
+      <div id="auth-block" class="auth-layout">
+        <section class="panel" aria-labelledby="login-title">
+          <h2 id="login-title">Вход</h2>
+          <form id="login-form" novalidate>
+            <div class="form-field">
+              <label for="login-email">Электронная почта</label>
+              <input type="email" id="login-email" name="email" autocomplete="username" required>
+              <span class="field-error" aria-live="polite"></span>
+            </div>
+            <div class="form-field">
+              <label for="login-password">Пароль</label>
+              <input type="password" id="login-password" name="password" autocomplete="current-password" required>
+              <span class="field-error" aria-live="polite"></span>
+            </div>
+            <button class="btn" type="submit">Войти</button>
+            <p class="form-result is-error" id="login-result" hidden></p>
+          </form>
+        </section>
+        <section class="panel" aria-labelledby="register-title">
+          <h2 id="register-title">Регистрация</h2>
+          <form id="register-form" novalidate>
+            <div class="form-field">
+              <label for="reg-name">Имя</label>
+              <input type="text" id="reg-name" name="name" autocomplete="name" required>
+              <span class="field-error" aria-live="polite"></span>
+            </div>
+            <div class="form-field">
+              <label for="reg-email">Электронная почта</label>
+              <input type="email" id="reg-email" name="email" autocomplete="email" required>
+              <span class="field-error" aria-live="polite"></span>
+            </div>
+            <div class="form-field">
+              <label for="reg-password">Пароль <span class="field-hint">не короче 8 символов, буквы и цифры</span></label>
+              <input type="password" id="reg-password" name="password" autocomplete="new-password" required>
+              <span class="field-error" aria-live="polite"></span>
+            </div>
+            <button class="btn" type="submit">Зарегистрироваться</button>
+            <p class="form-result is-error" id="register-result" hidden></p>
+          </form>
+        </section>
+      </div>
+      <div id="profile-block" hidden>
+        <section class="panel" aria-labelledby="profile-title">
+          <h2 id="profile-title">Профиль</h2>
+          <p>Вы вошли как <strong id="profile-name"></strong> (<span id="profile-email"></span>).</p>
+          <p>Дата регистрации: <span id="profile-created"></span></p>
+          <button class="btn btn-outline" type="button" id="logout-btn">Выйти</button>
+        </section>
+        <section aria-labelledby="my-builds-title">
+          <h2 id="my-builds-title">Мои сборки</h2>
+          <ul class="saved-builds" id="my-builds"></ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 PCForge — учебный проект, БГТУ «ВОЕНМЕХ»</p>
+      <address>Санкт-Петербург, ул. 1-я Красноармейская, 1 · <a href="tel:+78125550123">+7 (812) 555-01-23</a></address>
+    </div>
+  </footer>
+</body>
+</html>

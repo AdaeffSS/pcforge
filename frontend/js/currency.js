@@ -9,7 +9,7 @@ function fetchRates() {
     ratesPromise = fetch(RATES_URL)
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`Сервер курсов ответил ошибкой ${response.status}`);
+          throw new Error(`Ошибка ${response.status}`);
         }
         return response.json();
       })
@@ -19,7 +19,7 @@ function fetchRates() {
         eur: data.Valute.EUR.Value,
       }))
       .catch((error) => {
-        ratesPromise = null; // при следующем вызове попробуем снова
+        ratesPromise = null; // в следующий раз запросим снова
         throw error;
       });
   }

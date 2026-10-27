@@ -7,8 +7,11 @@
   <title>Главная — PCForge</title>
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/api.js" defer></script>
   <script src="js/build-store.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/cards.js" defer></script>
+  <script src="js/home.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -22,6 +25,7 @@
           <li><a href="build.html">Моя сборка <span class="build-counter" data-build-counter>0</span></a></li>
           <li><a href="about.html">О проекте</a></li>
           <li><a href="contacts.html">Контакты</a></li>
+          <li><a href="account.html">Кабинет</a></li>
         </ul>
       </nav>
     </div>
@@ -53,81 +57,10 @@
 
       <section aria-labelledby="popular-title">
         <h2 id="popular-title">Популярные комплектующие</h2>
-        <div class="cards">
-        <article class="card" data-id="1" data-category="cpu" data-brand="AMD" data-price="19990" data-name="AMD Ryzen 5 7600" data-socket="AM5" data-power="65">
-                    <img src="img/cpu.svg" alt="Иллюстрация процессора" width="400" height="300" loading="lazy">
-                    <div class="card-body">
-                      <span class="card-category">Процессор</span>
-                      <h3><a href="product.html?id=1">AMD Ryzen 5 7600</a></h3>
-                      <p class="card-specs">AM5 · 6 / 12 · 3,8–5,1 ГГц</p>
-                      <div class="card-footer">
-                        <span class="price">19 990 ₽</span>
-                        <button class="btn btn-small" type="button" data-add-to-build="1">В сборку</button>
-                      </div>
-                    </div>
-                  </article>
-        <article class="card" data-id="15" data-category="gpu" data-brand="MSI" data-price="64990" data-name="MSI GeForce RTX 4070 SUPER Ventus 2X 12 ГБ" data-power="220" data-gpu-length="242">
-                    <img src="img/gpu.svg" alt="Иллюстрация видеокарты с двумя вентиляторами" width="400" height="300" loading="lazy">
-                    <div class="card-body">
-                      <span class="card-category">Видеокарта</span>
-                      <h3><a href="product.html?id=15">MSI GeForce RTX 4070 SUPER Ventus 2X 12 ГБ</a></h3>
-                      <p class="card-specs">NVIDIA GeForce RTX 4070 SUPER · 12 ГБ GDDR6X · 220 Вт</p>
-                      <div class="card-footer">
-                        <span class="price">64 990 ₽</span>
-                        <button class="btn btn-small" type="button" data-add-to-build="15">В сборку</button>
-                      </div>
-                    </div>
-                  </article>
-        <article class="card" data-id="10" data-category="ram" data-brand="Corsair" data-price="7490" data-name="Corsair Vengeance LPX 32 ГБ (2×16) DDR4-3600" data-ram-type="DDR4">
-                    <img src="img/ram.svg" alt="Иллюстрация двух модулей оперативной памяти" width="400" height="300" loading="lazy">
-                    <div class="card-body">
-                      <span class="card-category">Оперативная память</span>
-                      <h3><a href="product.html?id=10">Corsair Vengeance LPX 32 ГБ (2×16) DDR4-3600</a></h3>
-                      <p class="card-specs">DDR4 · 32 ГБ (2 × 16 ГБ) · 3600 МГц</p>
-                      <div class="card-footer">
-                        <span class="price">7 490 ₽</span>
-                        <button class="btn btn-small" type="button" data-add-to-build="10">В сборку</button>
-                      </div>
-                    </div>
-                  </article>
-        <article class="card" data-id="18" data-category="storage" data-brand="Samsung" data-price="8990" data-name="Samsung 990 EVO 1 ТБ M.2 NVMe">
-                    <img src="img/storage.svg" alt="Иллюстрация SSD-накопителя M.2" width="400" height="300" loading="lazy">
-                    <div class="card-body">
-                      <span class="card-category">Накопитель</span>
-                      <h3><a href="product.html?id=18">Samsung 990 EVO 1 ТБ M.2 NVMe</a></h3>
-                      <p class="card-specs">SSD M.2 NVMe PCIe 4.0 · 1 ТБ · 5000 МБ/с</p>
-                      <div class="card-footer">
-                        <span class="price">8 990 ₽</span>
-                        <button class="btn btn-small" type="button" data-add-to-build="18">В сборку</button>
-                      </div>
-                    </div>
-                  </article>
-        <article class="card" data-id="22" data-category="psu" data-brand="Cougar" data-price="8990" data-name="Cougar GEX 750 Вт" data-power="750">
-                    <img src="img/psu.svg" alt="Иллюстрация блока питания" width="400" height="300" loading="lazy">
-                    <div class="card-body">
-                      <span class="card-category">Блок питания</span>
-                      <h3><a href="product.html?id=22">Cougar GEX 750 Вт</a></h3>
-                      <p class="card-specs">750 Вт · 80 PLUS Gold · полная</p>
-                      <div class="card-footer">
-                        <span class="price">8 990 ₽</span>
-                        <button class="btn btn-small" type="button" data-add-to-build="22">В сборку</button>
-                      </div>
-                    </div>
-                  </article>
-        <article class="card" data-id="25" data-category="case" data-brand="Zalman" data-price="3990" data-name="Zalman S4 Plus" data-form-factor="ATX" data-gpu-length="315">
-                    <img src="img/case.svg" alt="Иллюстрация компьютерного корпуса" width="400" height="300" loading="lazy">
-                    <div class="card-body">
-                      <span class="card-category">Корпус</span>
-                      <h3><a href="product.html?id=25">Zalman S4 Plus</a></h3>
-                      <p class="card-specs">Mid Tower · ATX, Micro-ATX, Mini-ITX · 315 мм</p>
-                      <div class="card-footer">
-                        <span class="price">3 990 ₽</span>
-                        <button class="btn btn-small" type="button" data-add-to-build="25">В сборку</button>
-                      </div>
-                    </div>
-                  </article>
+        <div class="cards" id="popular-list" aria-live="polite">
+          <p class="status-loading">Загружаем подборку…</p>
         </div>
-        <p><a href="catalog.html">Весь каталог — 30 позиций →</a></p>
+        <p><a href="catalog.html">Весь каталог — <span id="catalog-size">…</span> позиций →</a></p>
       </section>
     </div>
   </main>

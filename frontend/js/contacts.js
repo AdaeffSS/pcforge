@@ -1,4 +1,4 @@
-// Форма обратной связи: проверка данных перед отправкой.
+// Форма обратной связи: проверка данных и отправка на сервер.
 
 const feedbackForm = document.getElementById("feedback-form");
 const feedbackResult = document.getElementById("feedback-result");
@@ -13,15 +13,34 @@ const feedbackRules = {
 
 enableLiveValidation(feedbackForm, feedbackRules);
 
-feedbackForm.addEventListener("submit", (event) => {
+feedbackForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   feedbackResult.hidden = true;
   if (!validateForm(feedbackForm, feedbackRules)) {
     return;
   }
-  const name = feedbackForm.elements.name.value.trim();
-  feedbackResult.className = "form-result";
-  feedbackResult.textContent = `${name}, спасибо! Данные заполнены верно. Отправка на сервер появится в следующей версии сайта.`;
-  feedbackResult.hidden = false;
-  feedbackForm.reset();
+  const fields = feedbackForm.elements;
+  const submitButton = feedbackForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  try {
+    await apiRequest("/api/feedback", {
+      method: "POST",
+      body: {
+        name: fields.name.value.trim(),
+        email: fields.email.value.trim(),
+        phone: fields.phone.value.replace(/[\s()-]/g, "") || null,
+        topic: fields.topic.value,
+        message: fields.message.value.trim(),
+      },
+    });
+    feedbackResult.className = "form-result";
+    feedbackResult.textContent = `${fields.name.value.trim()}, спасибо! Сообщение отправлено, мы ответим на почту.`;
+    feedbackForm.reset();
+  } catch (error) {
+    feedbackResult.className = "form-result is-error";
+    feedbackResult.textContent = `Сообщение не отправлено: ${error.message}`;
+  } finally {
+    submitButton.disabled = false;
+    feedbackResult.hidden = false;
+  }
 });
