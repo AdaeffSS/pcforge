@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    image: pcforge:latest
+    container_name: pcforge
+    env_file: .env
+    ports:
+      # порт открыт только для локального обратного прокси (nginx/Caddy) на сервере
+      - "127.0.0.1:${APP_PORT:-8000}:8000"
+    volumes:
+      - pcforge-data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/categories')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  pcforge-data:

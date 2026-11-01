@@ -1,0 +1,6 @@
+# Блок для Caddyfile сервера: Caddy сам получает сертификат Let's Encrypt
+# для домена и перенаправляет HTTP на HTTPS.
+it.adaeff.ru {
+	encode zstd gzip
+	reverse_proxy pcforge:8000
+}
